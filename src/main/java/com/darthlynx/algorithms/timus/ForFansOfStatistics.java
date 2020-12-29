@@ -70,7 +70,7 @@ public class ForFansOfStatistics {
             List<String> inputs = new ArrayList<>();
             while (true) {
                 String line = reader.readLine();
-                if (line.isEmpty()) {
+                if (line == null || line.isEmpty()) {
                     break;
                 }
                 inputs.add(line);
