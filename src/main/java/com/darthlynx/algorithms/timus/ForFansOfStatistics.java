@@ -1,5 +1,6 @@
 package com.darthlynx.algorithms.timus;
 
+import java.io.*;
 import java.util.*;
 
 public class ForFansOfStatistics {
@@ -28,7 +29,7 @@ public class ForFansOfStatistics {
                 builder.append(0);
             }
         }
-        System.out.println(builder);
+        System.out.print(builder);
 
     }
 
@@ -65,28 +66,26 @@ public class ForFansOfStatistics {
     }
 
     private static List<String> getInputData() {
-        Scanner in = new Scanner(System.in);
-        List<String> inputs = new ArrayList<>();
-        while (true) {
-            String line = in.nextLine();
-            if (line.isEmpty()) {
-                break;
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
+            List<String> inputs = new ArrayList<>();
+            while (true) {
+                String line = reader.readLine();
+                if (line.isEmpty()) {
+                    break;
+                }
+                inputs.add(line);
             }
-            inputs.add(line);
+            reader.close();
+            return inputs;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return inputs;
     }
 
-    private static class QueryHolder {
+    static class QueryHolder {
         private final int leftEdge;
         private final int rightEdge;
         private final int count;
-
-        private QueryHolder(int leftEdge, int rightEdge, int count) {
-            this.leftEdge = leftEdge;
-            this.rightEdge = rightEdge;
-            this.count = count;
-        }
 
         private QueryHolder(String[] inputs) {
             this.leftEdge = Integer.parseInt(inputs[0]);
