@@ -1,12 +1,10 @@
 package com.darthlynx.algorithms.leetcode;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 public class BestTimeToBuyAndSellStocks {
-
-    public static void main(String[] args) {
-        int[] prices = new int[]{7,1,5,3,6,4};
-
-        System.out.println(new BestTimeToBuyAndSellStocks().maxProfit(prices));
-    }
 
     // https://leetcode.com/problems/best-time-to-buy-and-sell-stock
     public int maxProfit(int[] prices) {
@@ -21,5 +19,13 @@ public class BestTimeToBuyAndSellStocks {
             }
         }
         return maxProfit;
+    }
+
+    @Test
+    public void testMaxProfit() {
+        var instance = new BestTimeToBuyAndSellStocks();
+        int[] prices = new int[]{7,1,5,3,6,4};
+        var expectedResult = 5;
+        assertEquals(expectedResult, instance.maxProfit(prices));
     }
 }
