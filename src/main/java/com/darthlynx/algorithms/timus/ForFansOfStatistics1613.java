@@ -74,7 +74,6 @@ public class ForFansOfStatistics1613 {
                 }
                 inputs.add(line);
             }
-            reader.close();
             return inputs;
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -23,15 +23,7 @@ public class NestedSegments1987 {
             segments.add(new Pair(Integer.parseInt(elem[1])+1, -1)); // add 1 to the right boarder to include entire segment
         }
 
-        segments.sort((o1, o2) -> {
-            if (o1.x > o2.x) {
-                return 1;
-            } else if (o1.x == o2.x) {
-                return 0;
-            } else {
-                return -1;
-            }
-        });
+        segments.sort((o1, o2) -> Integer.compare(o1.x, o2.x));
 
         int m = Integer.parseInt(inputs.get(n+1));
 
@@ -76,7 +68,7 @@ public class NestedSegments1987 {
     }
 
     private static List<String> getInputData() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             List<String> inputs = new ArrayList<>();
             while (true) {
                 String line = reader.readLine();
@@ -85,7 +77,6 @@ public class NestedSegments1987 {
                 }
                 inputs.add(line);
             }
-            reader.close();
             return inputs;
         } catch (IOException e) {
             throw new RuntimeException(e);
