@@ -20,7 +20,7 @@ public class NestedSegments1987 {
         for (int i = 1; i <= n; i++) {
             String[] elem = inputs.get(i).split(" ");
             segments.add(new Pair(Integer.parseInt(elem[0]), i));
-            segments.add(new Pair(Integer.parseInt(elem[1])+1, -1));
+            segments.add(new Pair(Integer.parseInt(elem[1])+1, -1)); // add 1 to the right boarder to include entire segment
         }
 
         segments.sort((o1, o2) -> {
