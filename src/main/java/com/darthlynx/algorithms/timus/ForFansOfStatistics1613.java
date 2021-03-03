@@ -3,13 +3,12 @@ package com.darthlynx.algorithms.timus;
 import java.io.*;
 import java.util.*;
 
-public class ForFansOfStatistics {
+public class ForFansOfStatistics1613 {
 
+    // https://timus.online/problem.aspx?space=1&num=1613
     public static void main(String[] args) {
 
         List<String> inputs = getInputData();
-//        Integer n = Integer.parseInt(inputs.get(0));
-//        Integer q = Integer.parseInt(inputs.get(2));
         Map<Integer, TreeSet<Integer>> stats = getStats(stringToIntList(inputs.get(1)));
 
         List<QueryHolder> queries = getQueries(inputs);
