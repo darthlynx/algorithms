@@ -3,19 +3,24 @@ package com.darthlynx.algorithms.trie;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class WordSearcher {
 
     private static final String INPUT_FILE = "words.txt";
     private static Random random = new Random();
 
+    static class TrieNode {
+        private TrieNode[] children;
+        private String word;
+        TrieNode() {
+            children = new TrieNode[26];
+        }
+    }
+
     public static void main(String[] args) {
-        Trie prefixTree = new Trie();
-        prepareDictionary(prefixTree);
+        TrieNode root = new TrieNode();
+        prepareDictionary(root);
 
         char[][] field = generateField(5);
         for (char[] line : field) {
@@ -23,12 +28,53 @@ public class WordSearcher {
         }
 
         WordSearcher searcher = new WordSearcher();
-        List<String> foundWords = searcher.search(field, prefixTree);
+        List<String> foundWords = searcher.search(field, root);
         System.out.println(foundWords);
     }
 
-    public List<String> search(char[][] field, Trie dictionary) {
-        return Collections.emptyList();
+    public List<String> search(char[][] field, TrieNode root) {
+        List<String> foundWords = new ArrayList<>();
+        if (field == null || field.length == 0) {
+            return foundWords;
+        }
+
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[0].length; j++) {
+                char ch = field[i][j];
+                if (root.children[ch - 'a'] != null) {
+                    dfs(field, i, j, root, foundWords);
+                }
+            }
+        }
+        return foundWords;
+    }
+
+    private void dfs(char[][] board, int i, int j, TrieNode node, List<String> foundWords) {
+        if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) {
+            return;
+        }
+
+        char checked = '!';
+        char ch = board[i][j];
+        if (ch == checked || node.children[ch - 'a'] == null) {
+            return;
+        }
+
+        node = node.children[ch - 'a'];
+        if (node.word != null) {
+            foundWords.add(node.word);
+            node.word = null; // mark as null to avoid words duplication
+        }
+        board[i][j] = checked;
+
+        dfs(board, i-1, j, node, foundWords); // check left neighbour
+        dfs(board, i+1, j, node, foundWords); // check right neighbour
+        dfs(board, i, j-1, node, foundWords); // check top neighbour
+        dfs(board, i, j+1, node, foundWords); // check bottom neighbour
+        dfs(board, i+1, j-1, node, foundWords); // check diagonal /
+        dfs(board, i+1, j+1, node, foundWords); // check diagonal \
+
+        board[i][j] = ch;
     }
 
 
@@ -46,7 +92,18 @@ public class WordSearcher {
         return (char)(random.nextInt(26) + 'a');
     }
 
-    private static void prepareDictionary(Trie trie) {
+    static void addWord(TrieNode root, String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            if (node.children[ch - 'a'] == null) {
+                node.children[ch - 'a'] = new TrieNode();
+            }
+            node = node.children[ch - 'a'];
+        }
+        node.word = word;
+    }
+
+    static void prepareDictionary(TrieNode root) {
         var inputLocation = WordSearcher.class.getClassLoader().getResource(INPUT_FILE);
         try (BufferedReader reader = new BufferedReader(new FileReader(inputLocation.getPath()))){
             while (true) {
@@ -54,7 +111,7 @@ public class WordSearcher {
                 if (currentLine == null || currentLine.isEmpty()) {
                     break;
                 }
-                trie.insert(currentLine);
+                addWord(root, currentLine);
             }
         } catch(IOException | NullPointerException e) {
             throw new RuntimeException(e);
