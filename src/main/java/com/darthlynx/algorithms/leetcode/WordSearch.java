@@ -8,12 +8,7 @@ import static org.junit.Assert.assertTrue;
 // https://leetcode.com/problems/word-search/
 public class WordSearch {
 
-    private static final int[][] MASK = {{0,1}, {0,-1}, {-1,0}, {1,0}};
-
     public boolean exist(char[][] board, String word) {
-        int n = board.length;
-        int m = board[0].length;
-
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (dfs(board, word, i, j, 0)) {
@@ -36,12 +31,13 @@ public class WordSearch {
         char checked = '!';
         char temp = board[i][j];
         board[i][j] = checked;
-        // suddenly, this structure works faster than loop through the mask
         boolean result = dfs(board, word, i-1, j, charPosition+1) ||
                 dfs(board, word, i+1, j, charPosition+1) ||
                 dfs(board, word, i, j-1, charPosition+1) ||
                 dfs(board, word, i, j+1, charPosition+1);
-//        for (int[] m : MASK) {
+        // Loop is easier to understand, but works slower than unrolled loop
+//        int[][] mask = {{0,1}, {0,-1}, {-1,0}, {1,0}};
+//        for (int[] m : mask) {
 //            int dx = i + m[0];
 //            int dy = j + m[1];
 //            if (dfs(board, word, dx, dy, charPosition+1)) {
