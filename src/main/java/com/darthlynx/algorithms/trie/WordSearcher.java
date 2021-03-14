@@ -9,6 +9,7 @@ public class WordSearcher {
 
     private static final String INPUT_FILE = "words.txt";
     private static Random random = new Random();
+    private List<String> foundWords = new ArrayList<>();
 
     static class TrieNode {
         private TrieNode[] children;
@@ -33,7 +34,6 @@ public class WordSearcher {
     }
 
     public List<String> search(char[][] field, TrieNode root) {
-        List<String> foundWords = new ArrayList<>();
         if (field == null || field.length == 0) {
             return foundWords;
         }
@@ -42,14 +42,14 @@ public class WordSearcher {
             for (int j = 0; j < field[0].length; j++) {
                 char ch = field[i][j];
                 if (root.children[ch - 'a'] != null) {
-                    dfs(field, i, j, root, foundWords);
+                    dfs(field, i, j, root);
                 }
             }
         }
         return foundWords;
     }
 
-    private void dfs(char[][] board, int i, int j, TrieNode node, List<String> foundWords) {
+    private void dfs(char[][] board, int i, int j, TrieNode node) {
         if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) {
             return;
         }
@@ -67,12 +67,12 @@ public class WordSearcher {
         }
         board[i][j] = checked;
 
-        dfs(board, i-1, j, node, foundWords); // check left neighbour
-        dfs(board, i+1, j, node, foundWords); // check right neighbour
-        dfs(board, i, j-1, node, foundWords); // check top neighbour
-        dfs(board, i, j+1, node, foundWords); // check bottom neighbour
-        dfs(board, i+1, j-1, node, foundWords); // check diagonal /
-        dfs(board, i+1, j+1, node, foundWords); // check diagonal \
+        dfs(board, i-1, j, node); // check left neighbour
+        dfs(board, i+1, j, node); // check right neighbour
+        dfs(board, i, j-1, node); // check top neighbour
+        dfs(board, i, j+1, node); // check bottom neighbour
+        dfs(board, i+1, j-1, node); // check diagonal /
+        dfs(board, i+1, j+1, node); // check diagonal \
 
         board[i][j] = ch;
     }
