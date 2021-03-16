@@ -2,7 +2,9 @@ package com.darthlynx.algorithms.timus;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // https://timus.online/problem.aspx?space=1&num=1837&locale=ru
 public class IsenbaevsNumber1837 {
@@ -11,13 +13,26 @@ public class IsenbaevsNumber1837 {
 
     public static void main(String[] args) {
         List<String> inputs = getInputData();
-        String isenbaev = "Isenbaev";
 
         int n = Integer.parseInt(inputs.get(0));
 
+        Map<Player, List<Player>> graph = new HashMap<>();
+
+        for (int i = 1; i <= n; i++) {
+            System.out.println(inputs.get(i));
+        }
 
     }
 
+    static class Player {
+        private String lastName;
+        private int isenbaevNumber = -1;
+
+        Player(String lastName, int isenbaevNumber) {
+            this.lastName = lastName;
+            this.isenbaevNumber = isenbaevNumber;
+        }
+    }
 
     private static List<String> getInputData() {
         boolean onlineJudge = System.getProperty("ONLINE_JUDGE") != null;
