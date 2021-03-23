@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// https://acm.timus.ru/problem.aspx?space=1&num=2151&locale=ru
 public class Mahjong {
 
     private static final String INPUT_FILE = "2151_input.txt";
