@@ -1,7 +1,5 @@
 package com.darthlynx.algorithms.timus;
 
-import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,6 +52,21 @@ public class Mahjong {
             System.out.println(TSUMO);
             System.exit(0);
         }
+        if (triplesNumber == 3 && pairNumber == 1) {
+            String first = dices.get(0);
+            String second = dices.get(1);
+            String third = dices.get(2);
+            // for equal dices (triplet)
+            if (first.equalsIgnoreCase(second) && second.equalsIgnoreCase(third)) {
+                isTenpai = true;
+            }
+            // for sequence triples
+            if (first.charAt(1) == second.charAt(1) && second.charAt(1) == third.charAt(1)) {
+                if (second.charAt(0) - first.charAt(0) == 1 || third.charAt(0) - second.charAt(0) == 1) {
+                    isTenpai = true;
+                }
+            }
+        }
         if (triplesNumber < 4) {
             // check sequence triples
             for (int i = 0; i < dices.size(); i++) {
@@ -69,7 +82,7 @@ public class Mahjong {
 
                     if (cur.charAt(0) + 1 == next.charAt(0) && next.charAt(0) + 1 == nextNext.charAt(0)) {
                         if (cur.charAt(1) == next.charAt(1) && next.charAt(1) == nextNext.charAt(1)) {
-                            List<String> copy = new ArrayList<>(List.copyOf(dices));
+                            List<String> copy = new ArrayList<>(dices);
                             copy.remove(nextNext);
                             copy.remove(next);
                             copy.remove(cur);
@@ -88,7 +101,7 @@ public class Mahjong {
                 String nextNext = dices.get(nextNextPos);
 
                 if (cur.equals(next) && next.equals(nextNext)) {
-                    List<String> copy = new ArrayList<>(List.copyOf(dices));
+                    List<String> copy = new ArrayList<>(dices);
                     copy.remove(nextNext);
                     copy.remove(next);
                     copy.remove(cur);
@@ -101,7 +114,7 @@ public class Mahjong {
             for (int i = 0; i < dices.size()-1; i++) {
                 String c = dices.get(i);
                 if (c.equals(dices.get(i+1))) {
-                    List<String> copy = new ArrayList<>(List.copyOf(dices));
+                    List<String> copy = new ArrayList<>(dices);
                     copy.remove(i+1);
                     copy.remove(i);
                     backTracking(copy, triplesNumber, pairNumber+1);
@@ -112,9 +125,7 @@ public class Mahjong {
         if (triplesNumber == 4 && pairNumber == 0) {
             isTenpai = true;
         }
-        if (triplesNumber == 3 && pairNumber == 1) {
-            //
-        }
+
     }
 
     private static int getNext(List<String> dices, int current) {
