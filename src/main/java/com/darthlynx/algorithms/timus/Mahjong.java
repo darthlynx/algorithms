@@ -23,7 +23,8 @@ public class Mahjong {
     // 1a 2a 3a 6a 7a 8a 5b 5b 5b 9c 8c 7c 1c 1c   - Tsumo
     // 1a 2a 3a 6a 7a 8a 5b 5b 5b 9c 8c 7c 1c 1b   - Tenpai (pair)
     // 1a 2a 3a 6a 7a 8a 5b 5b 5b 9c 8c 6c 1c 1c   - Tenpai (triple)
-    // 1a 2a 3a 6a 7a 8a 5b 5b 5b 9c 5c 3c 1c 1c   - Noten
+    // 1a 2a 3a 6a 7a 8a 5b 9b 5b 9c 8c 7c 1c 1c   - Tenpai (triple)
+    // 1a 2a 3a 6a 7a 8a 5b 5b 5b 9c 5c 2c 1c 1c   - Noten
     public void solve(String line) {
         List<String> dice = Arrays.asList(line.split(" "));
 
@@ -57,18 +58,22 @@ public class Mahjong {
             String second = dices.get(1);
             String third = dices.get(2);
             // for equal dices (triplet)
-            if (first.equalsIgnoreCase(second) && second.equalsIgnoreCase(third)) {
+            if (first.equalsIgnoreCase(second) || second.equalsIgnoreCase(third) || first.equalsIgnoreCase(third)) {
                 isTenpai = true;
             }
-            // for sequence triples
-            if (first.charAt(1) == second.charAt(1) && second.charAt(1) == third.charAt(1)) {
-                if (second.charAt(0) - first.charAt(0) == 1 || third.charAt(0) - second.charAt(0) == 1) {
-                    isTenpai = true;
-                }
+            // for sequential triples
+            // e.g. if 1a 3a 2b left (2b can be changed to 2a to get the right triple)
+            int secondMinusFirst = second.charAt(0) - first.charAt(0);
+            int thirdMinusFirst = third.charAt(0) - first.charAt(0);
+            int thirdMinusSecond = third.charAt(0) - second.charAt(0);
+            if (secondMinusFirst <= 2 && secondMinusFirst > 0 && first.charAt(1) == second.charAt(1)
+                    || thirdMinusFirst <= 2 && thirdMinusFirst > 0 && first.charAt(1) == third.charAt(1)
+                    || thirdMinusSecond <= 2 && thirdMinusSecond > 0 && second.charAt(1) == third.charAt(1)) {
+                isTenpai = true;
             }
         }
         if (triplesNumber < 4) {
-            // check sequence triples
+            // check sequential triples
             for (int i = 0; i < dices.size(); i++) {
                 int nextPos = getNext(dices, i);
                 if (nextPos < 0) {
