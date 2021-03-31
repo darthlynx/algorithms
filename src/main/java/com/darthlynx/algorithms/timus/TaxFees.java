@@ -15,27 +15,28 @@ public class TaxFees {
     private static final String INPUT_FILE = "2152_input.txt";
 
     public static void main(String[] args) {
-        List<String> inputs = getInputData();
-
-        new TaxFees().solve(inputs);
+        boolean onlineJudge = System.getProperty("ONLINE_JUDGE") != null;
+        URL inputLocation = TaxFees.class.getClassLoader().getResource(INPUT_FILE);
+        try (Scanner input = (onlineJudge || inputLocation == null) ? new Scanner(System.in) : new Scanner(new File(inputLocation.getPath()))) {
+            new TaxFees().solve(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void solve(List<String> inputs) {
-        String[] nk = getEntries(inputs.get(0));
-        int n = Integer.parseInt(nk[0]);
-        int k = Integer.parseInt(nk[1]);
+    public void solve(Scanner in) {
+        int n = in.nextInt();
+        int k = in.nextInt();
 
-        String[] params = getEntries(inputs.get(1));
-        mxw = Long.parseLong(params[0]);
-        mxp = Long.parseLong(params[1]);
-        a = Long.parseLong(params[2]) * 100;
-        b = Long.parseLong(params[3]);
+        mxw = in.nextInt();
+        mxp = in.nextInt();
+        a = in.nextInt() * 100L;
+        b = in.nextInt();
 
         List<Holder> initialPairs = new ArrayList<>();
         List<Holder> updatedPairs = new ArrayList<>();
         for (int i = 2; i < n+2; i++) {
-            String[] tmp = getEntries(inputs.get(i));
-            Pair current = new Pair(Long.parseLong(tmp[0]), Long.parseLong(tmp[1]));
+            Pair current = new Pair(in.nextLong(), in.nextLong());
             initialPairs.add(new Holder(-1, calculateTaxes(current), current));
 
             Pair updatedW = new Pair(getMaxValue(current.w), current.p);
@@ -50,16 +51,10 @@ public class TaxFees {
         }
 
 
-//        System.out.println(pairs);
-
         updatedPairs.sort((e1, e2) -> {
             // descending order by maxTax
             return Long.compare(e2.maxTax, e1.maxTax);
         });
-
-//        System.out.println(holders);
-//        List<Holder> resultList = new ArrayList<>(holders.subList(0, k));
-//        System.out.println(resultList);
 
         for (int i = 0; i < k; i++) {
             Holder h = updatedPairs.get(i);
@@ -68,9 +63,9 @@ public class TaxFees {
 
 //        BigDecimal resultTaxes = new BigDecimal(0);
         double resultTaxes = 0;
-        for (int i = 0; i < initialPairs.size(); i++) {
+        for (Holder initialPair : initialPairs) {
 //            resultTaxes = resultTaxes.add(new BigDecimal(initialPairs.get(i).maxTax));
-            resultTaxes += initialPairs.get(i).maxTax;
+            resultTaxes += initialPair.maxTax;
         }
 
 //        DecimalFormat format = new DecimalFormat(".#########");
@@ -82,8 +77,6 @@ public class TaxFees {
 
 
     }
-
-
 
     private long calculateTaxes(Pair pair) {
         long taxes = 0;
@@ -142,27 +135,4 @@ public class TaxFees {
         }
     }
 
-    private static String[] getEntries(String s) {
-        String[] entries = s.split(" ");
-        return entries;
-    }
-
-    private static List<String> getInputData() {
-        boolean onlineJudge = System.getProperty("ONLINE_JUDGE") != null;
-        URL inputLocation = TaxFees.class.getClassLoader().getResource(INPUT_FILE);
-        try (Reader r = onlineJudge || inputLocation == null ? new InputStreamReader(System.in) : new FileReader(inputLocation.getPath());
-             BufferedReader reader = new BufferedReader(r)) {
-            List<String> inputs = new ArrayList<>();
-            while (true) {
-                String line = reader.readLine();
-                if (line == null || line.isEmpty()) {
-                    break;
-                }
-                inputs.add(line);
-            }
-            return inputs;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
