@@ -61,21 +61,15 @@ public class TaxFees {
             initialPairs.set(h.index, h);
         }
 
-//        BigDecimal resultTaxes = new BigDecimal(0);
-        double resultTaxes = 0;
+        BigDecimal resultTaxes = new BigDecimal(0);
         for (Holder initialPair : initialPairs) {
-//            resultTaxes = resultTaxes.add(new BigDecimal(initialPairs.get(i).maxTax));
-            resultTaxes += initialPair.maxTax;
+            resultTaxes = resultTaxes.add(new BigDecimal(initialPair.maxTax));
         }
 
-//        DecimalFormat format = new DecimalFormat(".#########");
-//        System.out.println(format.format(resultTaxes.divide(new BigDecimal(100))));
-        System.out.println(resultTaxes/100);
-        initialPairs.forEach(e -> {
-            System.out.println(e.pair);
-        });
-
-
+        // print results
+        DecimalFormat format = new DecimalFormat(".000000000");
+        System.out.println(format.format(resultTaxes.divide(new BigDecimal(100L))));
+        initialPairs.forEach(e -> System.out.println(e.pair));
     }
 
     private long calculateTaxes(Pair pair) {
