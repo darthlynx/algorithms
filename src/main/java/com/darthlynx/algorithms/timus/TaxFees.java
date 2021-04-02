@@ -6,6 +6,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
 
+// https://acm.timus.ru/problem.aspx?space=1&num=2152&locale=ru
 public class TaxFees {
     private long mxw;
     private long mxp;
@@ -25,13 +26,13 @@ public class TaxFees {
     }
 
     public void solve(Scanner in) {
-        int n = in.nextInt();
-        int k = in.nextInt();
+        int n = in.nextInt(); // number of packages
+        int k = in.nextInt(); // number of possible changes
 
-        mxw = in.nextInt();
-        mxp = in.nextInt();
-        a = in.nextInt() * 100L;
-        b = in.nextInt();
+        mxw = in.nextInt();       // max weight
+        mxp = in.nextInt();       // max price
+        a = in.nextInt() * 100L;  // overweight tax (one per each extra kg)
+        b = in.nextInt();         // overprice tax (%)
 
         List<Holder> initialPairs = new ArrayList<>();
         List<Holder> updatedPairs = new ArrayList<>();
@@ -41,9 +42,9 @@ public class TaxFees {
 
             Pair updatedW = new Pair(getMaxValue(current.w), current.p);
             Pair updatedP = new Pair(current.w, getMaxValue(current.p));
-            long taxW = calculateTaxes(updatedW);
-            long taxP = calculateTaxes(updatedP);
-            if (taxW > taxP) {
+            BigDecimal taxW = calculateTaxes(updatedW);
+            BigDecimal taxP = calculateTaxes(updatedP);
+            if (taxW.compareTo(taxP) > 0) {
                 updatedPairs.add(new Holder(i-2, taxW, updatedW));
             } else {
                 updatedPairs.add(new Holder(i-2, taxP, updatedP));
@@ -53,7 +54,7 @@ public class TaxFees {
 
         updatedPairs.sort((e1, e2) -> {
             // descending order by maxTax
-            return Long.compare(e2.maxTax, e1.maxTax);
+            return e2.maxTax.compareTo(e1.maxTax);
         });
 
         for (int i = 0; i < k; i++) {
@@ -63,7 +64,7 @@ public class TaxFees {
 
         BigDecimal resultTaxes = new BigDecimal(0);
         for (Holder initialPair : initialPairs) {
-            resultTaxes = resultTaxes.add(new BigDecimal(initialPair.maxTax));
+            resultTaxes = resultTaxes.add(initialPair.maxTax);
         }
 
         // print results
@@ -72,13 +73,15 @@ public class TaxFees {
         initialPairs.forEach(e -> System.out.println(e.pair));
     }
 
-    private long calculateTaxes(Pair pair) {
-        long taxes = 0;
+    private BigDecimal calculateTaxes(Pair pair) {
+        BigDecimal taxes = new BigDecimal(0);
         if (pair.w > mxw) {
-            taxes = (pair.w - mxw) * a;
+            BigDecimal diff = new BigDecimal(pair.w).subtract(new BigDecimal(mxw));
+            taxes = taxes.add(diff.multiply(new BigDecimal(a)));
         }
         if (pair.p > mxp) {
-            taxes+= (pair.p - mxp) * b;
+            BigDecimal diff = new BigDecimal(pair.p).subtract(new BigDecimal(mxp));
+            taxes = taxes.add(diff.multiply(new BigDecimal(b)));
         }
         return taxes;
     }
@@ -99,10 +102,10 @@ public class TaxFees {
 
     static class Holder {
         int index;
-        long maxTax;
+        BigDecimal maxTax;
         Pair pair;
 
-        public Holder(int index, long maxTax, Pair pair) {
+        public Holder(int index, BigDecimal maxTax, Pair pair) {
             this.index = index;
             this.maxTax = maxTax;
             this.pair = pair;
