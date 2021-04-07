@@ -1,11 +1,8 @@
 package com.darthlynx.algorithms.timus;
 
-import com.darthlynx.algorithms.utils.TimusTemplateScanner;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Scanner;
 
 public class AmbitiousExperiment {
