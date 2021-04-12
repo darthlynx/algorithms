@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
+// https://timus.online/problem.aspx?space=1&num=2062&locale=ru
 public class AmbitiousExperiment {
     private static final String INPUT_FILE = "2062_input.txt";
 
