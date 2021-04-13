@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class AmbitiousExperiment {
     private static final String INPUT_FILE = "2062_input.txt";
 
-    int[] a;
-    int[] b;
+    int[] particlesChargeDeltas;
+    int[] sqrtBlocks;
     int sqrtSize;
 
     public static void main(String[] args) {
@@ -24,59 +24,70 @@ public class AmbitiousExperiment {
     }
 
     public void solve(Scanner in) {
-        int n = in.nextInt();
+        int n = in.nextInt(); // number of particles
 
-        int[] parts = new int[n+1];
+        int[] particles = new int[n+1];
         for (int i = 0; i < n; i++) {
-            parts[i] = in.nextInt();
+            particles[i] = in.nextInt();
         }
 
-        a = new int[n+1];
+        particlesChargeDeltas = new int[n+1];
         sqrtSize = (int)(Math.sqrt(n) + 1);
-        b = new int[sqrtSize+1];
+        sqrtBlocks = new int[sqrtSize+1];
 
-        int q = in.nextInt();
+        int q = in.nextInt(); // number of actions over particles
 
         for (int i = 0; i < q; i++) {
             int start = in.nextInt();
             int index;
             if (start == 1) {
                 index = in.nextInt();
-                System.out.println(a[index] + b[index/sqrtSize] + parts[index]);
+                System.out.println(particlesChargeDeltas[index] + sqrtBlocks[index/sqrtSize] + particles[index]);
             } else if (start == 2) {
                 int l = in.nextInt(); // left
                 int r = in.nextInt(); // right
                 int d = in.nextInt(); // delta
-                updateParts(l, r, d);
+                updateParticlesCharges(l, r, d);
             }
         }
 
     }
 
-    private void updateParts(int l, int r, int d) {
+    private void updateParticlesCharges(int l, int r, int d) {
         int leftBlockPos = l/sqrtSize;
         int rightBlockPos = r/sqrtSize;
 
+        // if left and right boarder are in the same sqrt block
         if (leftBlockPos == rightBlockPos) {
             for (int i = l; i <= r; i++) {
-                a[i] += d;
+                particlesChargeDeltas[i] += d;
             }
         } else {
-            int lR = (leftBlockPos+1) * sqrtSize;
-            for (int i = l; i < lR; i++) {
-                a[i] += d;
-            }
-
-            for (int i = leftBlockPos+1; i < rightBlockPos; i++) {
-                b[i] += d;
-            }
-
-            int rL = rightBlockPos * sqrtSize;
-            for (int i = rL; i <= r; i++) {
-                a[i] += d;
-            }
+            updateLeftBlock(l, leftBlockPos, d);
+            updateBlocksBetweenLeftAndRight(leftBlockPos, rightBlockPos, d);
+            updateRightBlock(r, rightBlockPos, d);
         }
 
+    }
+
+    private void updateLeftBlock(int l, int leftBlockPos, int d) {
+        int rightBorderForLeftBlock = (leftBlockPos+1) * sqrtSize;
+        for (int i = l; i < rightBorderForLeftBlock; i++) {
+            particlesChargeDeltas[i] += d;
+        }
+    }
+
+    private void updateRightBlock(int r, int rightBlockPos, int d) {
+        int leftBorderForRightBlock = rightBlockPos * sqrtSize;
+        for (int i = leftBorderForRightBlock; i <= r; i++) {
+            particlesChargeDeltas[i] += d;
+        }
+    }
+
+    private void updateBlocksBetweenLeftAndRight(int leftBlockPos, int rightBlockPos, int d) {
+        for (int i = leftBlockPos+1; i < rightBlockPos; i++) {
+            sqrtBlocks[i] += d;
+        }
     }
 
 }
