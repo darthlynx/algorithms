@@ -1,11 +1,10 @@
 package com.darthlynx.algorithms.timus;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 // https://timus.online/problem.aspx?space=1&num=2062&locale=ru
 public class AmbitiousExperiment {
@@ -16,43 +15,58 @@ public class AmbitiousExperiment {
     int sqrtSize;
     List<Integer>[] particlesDivisors;
 
+    private BufferedReader reader;
+    private StringTokenizer tokenizer;
+    private PrintWriter writer;
+
+    public AmbitiousExperiment() {}
+    public AmbitiousExperiment(BufferedReader reader, PrintWriter writer) {
+        this.reader = reader;
+        this.writer = writer;
+        this.tokenizer = null;
+    }
+
     public static void main(String[] args) {
         boolean onlineJudge = System.getProperty("ONLINE_JUDGE") != null;
         URL inputLocation = AmbitiousExperiment.class.getClassLoader().getResource(INPUT_FILE);
-        try (Scanner input = (onlineJudge || inputLocation == null) ? new Scanner(System.in) : new Scanner(new File(inputLocation.getPath()))) {
-            new AmbitiousExperiment().solve(input);
+        try (Reader r = onlineJudge || inputLocation == null ? new InputStreamReader(System.in) : new FileReader(inputLocation.getPath());
+             BufferedReader reader = new BufferedReader(r);
+             PrintWriter writer = new PrintWriter(new OutputStreamWriter(System.out))) {
+
+            new AmbitiousExperiment(reader, writer).solve();
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 
-    public void solve(Scanner in) {
-        int n = in.nextInt(); // number of particles, 1 <= n <= 3*10^5
+    public void solve() {
+        int n = nextInt(); // number of particles, 1 <= n <= 3*10^5
 
         particlesDivisors = calculateParticlesDivisors(n);
 
         int[] particlesCharges = new int[n+1];
         for (int i = 1; i <= n; i++) {
-            particlesCharges[i] = in.nextInt();
+            particlesCharges[i] = nextInt();
         }
 
         particlesChargeDeltas = new long[n+1];
         sqrtSize = (int)(Math.sqrt(n) + 1);
         sqrtBlocks = new long[sqrtSize+1];
 
-        int q = in.nextInt(); // number of actions over particles, 1 <= q <= 3*10^5
+        int q = nextInt(); // number of actions over particles, 1 <= q <= 3*10^5
 
+        int index, leftBound, rightBound, deltaCharge;
         for (int i = 0; i < q; i++) {
-            int start = in.nextInt();
-            int index;
+            int start = nextInt();
             if (start == 1) {
-                index = in.nextInt();
-                System.out.println(calculateParticleCharge(particlesCharges, index));
+                index = nextInt();
+                this.writer.println(calculateParticleCharge(particlesCharges, index));
             } else if (start == 2) {
-                int l = in.nextInt(); // left
-                int r = in.nextInt(); // right
-                int d = in.nextInt(); // delta
-                updateParticlesCharges(l, r, d);
+                leftBound = nextInt();
+                rightBound = nextInt();
+                deltaCharge = nextInt();
+                updateParticlesCharges(leftBound, rightBound, deltaCharge);
             }
         }
 
@@ -115,6 +129,21 @@ public class AmbitiousExperiment {
         for (int i = leftBlockPos+1; i < rightBlockPos; i++) {
             sqrtBlocks[i] += d;
         }
+    }
+
+    private String nextToken() {
+        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                tokenizer = new StringTokenizer(reader.readLine());
+            } catch (IOException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+        return tokenizer.nextToken();
+    }
+
+    private int nextInt() {
+        return Integer.parseInt(nextToken());
     }
 
 }
