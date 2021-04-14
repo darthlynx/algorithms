@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class AmbitiousExperiment {
     private static final String INPUT_FILE = "2062_input.txt";
 
-    int[] particlesChargeDeltas;
-    int[] sqrtBlocks;
+    long[] particlesChargeDeltas;
+    long[] sqrtBlocks;
     int sqrtSize;
     List<Integer>[] particlesDivisors;
 
@@ -32,13 +32,13 @@ public class AmbitiousExperiment {
         particlesDivisors = calculateParticlesDivisors(n);
 
         int[] particlesCharges = new int[n+1];
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             particlesCharges[i] = in.nextInt();
         }
 
-        particlesChargeDeltas = new int[n+1];
+        particlesChargeDeltas = new long[n+1];
         sqrtSize = (int)(Math.sqrt(n) + 1);
-        sqrtBlocks = new int[sqrtSize+1];
+        sqrtBlocks = new long[sqrtSize+1];
 
         int q = in.nextInt(); // number of actions over particles, 1 <= q <= 3*10^5
 
@@ -46,8 +46,8 @@ public class AmbitiousExperiment {
             int start = in.nextInt();
             int index;
             if (start == 1) {
-                index = in.nextInt() - 1; // because 1 <= n <= 3*10^5
-                System.out.println(particlesChargeDeltas[index] + sqrtBlocks[index/sqrtSize] + particlesCharges[index]);
+                index = in.nextInt();
+                System.out.println(calculateParticleCharge(particlesCharges, index));
             } else if (start == 2) {
                 int l = in.nextInt(); // left
                 int r = in.nextInt(); // right
@@ -56,6 +56,15 @@ public class AmbitiousExperiment {
             }
         }
 
+    }
+
+    long calculateParticleCharge(int[] particlesCharges, int index) {
+        long result = particlesCharges[index];
+        List<Integer> divisors = particlesDivisors[index];
+        for (int i = 0; i < divisors.size(); i++) {
+            result += particlesChargeDeltas[divisors.get(i)] + sqrtBlocks[divisors.get(i)/sqrtSize];
+        }
+        return result;
     }
 
     List<Integer>[] calculateParticlesDivisors(int n) {
