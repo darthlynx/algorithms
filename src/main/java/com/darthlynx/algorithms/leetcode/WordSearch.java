@@ -1,10 +1,5 @@
 package com.darthlynx.algorithms.leetcode;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 // https://leetcode.com/problems/word-search/
 public class WordSearch {
 
@@ -48,25 +43,4 @@ public class WordSearch {
         return result;
     }
 
-    @Test
-    public void testWordSearch() {
-        char[][] board = {{'A','B','C','E'},
-                          {'S','F','C','S'},
-                          {'A','D','E','E'}};
-        String word = "ABCCED";
-
-        WordSearch search = new WordSearch();
-        assertTrue(search.exist(board, word));
-    }
-
-    @Test
-    public void testWordSearchNegative() {
-        char[][] board = {{'A','B','C','E'},
-                          {'S','F','C','S'},
-                          {'A','D','E','E'}};
-        String word = "ABCB";
-
-        WordSearch search = new WordSearch();
-        assertFalse(search.exist(board, word));
-    }
 }
