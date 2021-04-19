@@ -1,9 +1,5 @@
 package com.darthlynx.algorithms.leetcode;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-
 public class PeakIndexInMountainArray {
 
     // https://leetcode.com/problems/peak-index-in-a-mountain-array/
@@ -23,11 +19,4 @@ public class PeakIndexInMountainArray {
         return left;
     }
 
-    @Test
-    public void testPeakIndexInMountainArray() {
-        int[] arr = {0,2,1,0};
-        int expected = 1;
-        int actual = peakIndexInMountainArray(arr);
-        assertEquals(expected, actual);
-    }
 }

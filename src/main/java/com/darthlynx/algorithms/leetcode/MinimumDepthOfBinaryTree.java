@@ -1,15 +1,11 @@
 package com.darthlynx.algorithms.leetcode;
 
-import org.junit.Test;
-
 import java.util.ArrayDeque;
-
-import static org.junit.Assert.assertEquals;
 
 // https://leetcode.com/problems/minimum-depth-of-binary-tree/
 public class MinimumDepthOfBinaryTree {
 
-     public class TreeNode {
+     public static class TreeNode {
          int val;
          TreeNode left;
          TreeNode right;
@@ -50,21 +46,5 @@ public class MinimumDepthOfBinaryTree {
         return depth;
     }
 
-    @Test
-    public void testMinDepth() {
-        TreeNode rRight = new TreeNode(20, new TreeNode(15), new TreeNode(7));
-        TreeNode root = new TreeNode(3, null, rRight);
 
-        assertEquals(3, new MinimumDepthOfBinaryTree().minDepth(root));
-    }
-
-    @Test
-    public void testMinDepth2() {
-         // [1,2,3,4,5]
-        TreeNode rLeft = new TreeNode(2);
-        TreeNode rRight = new TreeNode(3, new TreeNode(4), new TreeNode(5));
-        TreeNode root = new TreeNode(1, rLeft, rRight);
-
-        assertEquals(2, new MinimumDepthOfBinaryTree().minDepth(root));
-    }
 }

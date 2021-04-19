@@ -1,10 +1,5 @@
 package com.darthlynx.algorithms.leetcode;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 // https://leetcode.com/problems/reverse-linked-list
 public class ReverseLinkedList {
 
@@ -47,46 +42,6 @@ public class ReverseLinkedList {
          return current;
     }
 
-    @Test
-    public void testConstructLinkedList() {
-        ListNode head = constructLinkedList();
-        ListNode node = head;
-        for (int i = 1; i <= 5; i++) {
-            assertNotNull(node);
-            assertEquals(i, node.val);
-            node = node.next;
-        }
-    }
-
-    @Test
-    public void testReverseListRecursive() {
-        ListNode head = constructLinkedList();
-        ListNode node = head;
-
-        ReverseLinkedList reversal = new ReverseLinkedList();
-        node = reversal.reverseListRecursive(head);
-        for (int i = 5; i >= 1; i--) {
-            assertNotNull(node);
-            assertEquals(i, node.val);
-            node = node.next;
-        }
-
-    }
-
-    @Test
-    public void testReverseList() {
-        ListNode head = constructLinkedList();
-        ListNode node = head;
-
-        ReverseLinkedList reversal = new ReverseLinkedList();
-        node = reversal.reverseList(head);
-        for (int i = 5; i >= 1; i--) {
-            assertNotNull(node);
-            assertEquals(i, node.val);
-            node = node.next;
-        }
-    }
-
     private void printList(ListNode head) {
         ListNode current = head;
         while (current != null) {
@@ -95,7 +50,7 @@ public class ReverseLinkedList {
         }
     }
 
-    private ListNode constructLinkedList() {
+    ListNode constructLinkedList() {
          ListNode head = null;
          ListNode tail = null;
 
