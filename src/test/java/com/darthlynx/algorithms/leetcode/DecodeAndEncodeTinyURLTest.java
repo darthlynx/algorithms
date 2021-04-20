@@ -25,8 +25,8 @@ public class DecodeAndEncodeTinyURLTest {
     @Test
     public void testCreateUniqueId() {
         long id = 2556;
-        String firstRun = codec.createUniqueId(id);
-        String secondRun = codec.createUniqueId(id);
+        String firstRun = codec.createBase62UniqueID(id);
+        String secondRun = codec.createBase62UniqueID(id);
 
         assertEquals(firstRun, secondRun);
     }
