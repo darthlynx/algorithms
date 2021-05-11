@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+// https://codeforces.com/contest/1520/problem/A
 public class DoNotBeDistracted {
 
     public static void main(String[] args) {
