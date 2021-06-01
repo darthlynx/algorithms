@@ -33,7 +33,18 @@ public class MapColoring {
         checkIfNodeIsSingle(n);
 
         Map<Integer, Set<Integer>> graph = new HashMap<>(n);
+        fillGraph(graph, n);
 
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(1);
+
+        initializeColors(n);
+
+        bfs(queue, graph);
+        printResults(colors);
+    }
+
+    private void fillGraph(Map<Integer, Set<Integer>> graph, int n) {
         for (int i = 1; i <= n; i++) {
             int k = nextInt();
             while (k != 0) {
@@ -45,18 +56,14 @@ public class MapColoring {
                 addNeighbour(graph, neighbour, i);
             }
         }
+    }
 
-        Queue<Integer> queue = new ArrayDeque<>();
-        queue.add(1);
-
+    private void initializeColors(int n) {
         colors = new int[n+1];
         for (int i = 0; i <= n; i++) {
             colors[i] = -1;
         }
         colors[1] = 0;
-
-        bfs(queue, graph);
-        printResults(colors);
     }
 
     private void checkIfNodeIsSingle(int n) {
@@ -84,7 +91,7 @@ public class MapColoring {
                 int reversedColor = reverseColor(color);
                 int tmpColor = colors[neighbour];
                 if (tmpColor >= 0 && tmpColor != reversedColor) {
-                    System.out.println("-1");
+                    System.out.println("-1"); // painting is impossible
                     System.exit(0);
                 } else if (tmpColor < 0) {
                     colors[neighbour] = reversedColor;
