@@ -1,4 +1,4 @@
-package com.darthlynx.algorithms.algoacademy;
+package com.darthlynx.algorithms.algoacademy.hashtable;
 
 import java.util.HashMap;
 import java.util.Map;

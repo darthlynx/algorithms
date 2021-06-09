@@ -1,5 +1,6 @@
 package com.darthlynx.algorithms.algoacademy;
 
+import com.darthlynx.algorithms.algoacademy.hashtable.TwoSumIV;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
