@@ -1,4 +1,4 @@
-package com.darthlynx.algorithms.algoacademy.loops;
+package com.darthlynx.algorithms.algocademy.loops;
 
 public class PrintRhombus {
 
