@@ -9,9 +9,6 @@ public class ZFuncExample {
 
     public static void main(String[] args) {
 
-//        String s = "aaasdf";
-//        System.out.println(Arrays.toString(zFunc(s)));
-
         String s1 = "EF";
         String s2 = "ABCDEFDEFEF";
 

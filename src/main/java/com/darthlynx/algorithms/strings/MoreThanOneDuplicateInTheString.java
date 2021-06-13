@@ -1,4 +1,4 @@
-package com.darthlynx.algorithms.arrays;
+package com.darthlynx.algorithms.strings;
 
 import java.util.HashMap;
 import java.util.Map;
