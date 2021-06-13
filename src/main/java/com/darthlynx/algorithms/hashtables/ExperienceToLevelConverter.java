@@ -1,4 +1,4 @@
-package com.darthlynx.algorithms.other.exptolevel;
+package com.darthlynx.algorithms.hashtables;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,7 @@ public class ExperienceToLevelConverter {
 
     private TreeMap<Long, Integer> expToLevelMap = getExperienceToLevelMapping();
 
+    // Get the right level by experience
     public static void main(String[] args) {
         ExperienceToLevelConverter conv = new ExperienceToLevelConverter();
         System.out.println(conv.getLevelByExperience(6004l));
