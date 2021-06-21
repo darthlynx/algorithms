@@ -1,0 +1,18 @@
+package com.darthlynx.algorithms.algocademy.loops;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class LongestSubarrayWithoutRepeatingTest {
+
+    @Test
+    public void testLongestSubarray() {
+        int[] nums = {2, 5, 6, 2, 3, 1, 5, 6};
+        int targetLength = 5;
+
+        int actualLength = new LongestSubarrayWithoutRepeating().longestSubarrayWithoutRepeating(nums);
+        assertEquals(targetLength, actualLength);
+    }
+
+}
