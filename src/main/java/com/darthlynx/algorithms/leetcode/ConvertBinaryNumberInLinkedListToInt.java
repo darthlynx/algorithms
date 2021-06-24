@@ -1,5 +1,6 @@
 package com.darthlynx.algorithms.leetcode;
 
+// https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
 public class ConvertBinaryNumberInLinkedListToInt {
 
     public int getDecimalValue(ListNode head) {
