@@ -3,7 +3,21 @@ package com.darthlynx.algorithms.leetcode;
 // https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
 public class ConvertBinaryNumberInLinkedListToInt {
 
+    // fastest approach
     public int getDecimalValue(ListNode head) {
+
+        StringBuilder builder = new StringBuilder();
+        ListNode current = head;
+        while (current != null) {
+            builder.append(current.val);
+            current = current.next;
+        }
+
+        return Integer.parseInt(builder.toString(), 2);
+    }
+
+    // slower, but uses less memory
+    public int getDecimalValue2(ListNode head) {
 
         StringBuilder binarySequence = getBinarySequence(head);
 
