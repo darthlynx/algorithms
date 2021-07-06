@@ -1,6 +1,7 @@
 package com.darthlynx.algorithms.leetcode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // https://leetcode.com/problems/add-to-array-form-of-integer/
@@ -12,8 +13,7 @@ public class AddToArrayFormOfInteger {
         int tmp = k;
         int carry = 0;
 
-        StringBuilder result = new StringBuilder();
-
+        List<Integer> result = new ArrayList<>();
         while (numPointer >= 0 || tmp > 0) {
             int sum = carry + tmp % 10;
             if (num != null && numPointer >= 0) {
@@ -23,21 +23,15 @@ public class AddToArrayFormOfInteger {
             carry = sum / 10;
             tmp = tmp / 10;
 
-            result.append(sum % 10);
+            result.add(sum % 10);
         }
 
         if (carry > 0) {
-            result.append(carry);
+            result.add(carry);
         }
 
-        return stringToListOfIntegers(result.reverse().toString());
+        Collections.reverse(result);
+        return result;
     }
 
-    private List<Integer> stringToListOfIntegers(String resultString) {
-        List<Integer> resultList = new ArrayList<>();
-        for (char elem : resultString.toCharArray()) {
-            resultList.add(elem - '0');
-        }
-        return resultList;
-    }
 }
