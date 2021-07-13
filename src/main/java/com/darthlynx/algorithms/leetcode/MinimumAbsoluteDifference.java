@@ -13,8 +13,7 @@ public class MinimumAbsoluteDifference {
         Arrays.sort(arr);
         int minDiff = minAbsDifference(arr);
         for (int i = 0; i < arr.length - 1; i++) {
-            int delta = arr[i+1] - arr[i];
-            if (delta == minDiff) {
+            if (arr[i+1] - arr[i] == minDiff) {
                 pairs.add(List.of(arr[i], arr[i+1]));
             }
         }
