@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.darthlynx.algorithms.utils.Utils;
 
-public class SortingComparizon {
+public class SortingComparison {
 
 	public static void main(String[] args) {
 		List<Integer> list = Utils.generateRandomList(5000, 0, 2000);
