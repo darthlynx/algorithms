@@ -1,15 +1,8 @@
 package com.darthlynx.algorithms.leetcode;
 
-import java.util.Arrays;
 
 // https://leetcode.com/problems/minimum-path-sum/
 public class MinimumPathSum {
-
-    public static void main(String[] args) {
-        int[][] grid = {{1,3,1},{1,5,1},{4,2,1}};
-
-        new MinimumPathSum().minPathSum(grid);
-    }
 
     public int minPathSum(int[][] grid) {
         int m = grid.length;
