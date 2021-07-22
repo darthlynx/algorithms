@@ -19,7 +19,7 @@ public class AlertUsingSameCardThreeTimes {
         }
 
         return visits.entrySet()
-                .stream()
+                .parallelStream()
                 .filter(this::hasThreeOrMoreVisits)
                 .map(Map.Entry::getKey)
                 .sorted()
