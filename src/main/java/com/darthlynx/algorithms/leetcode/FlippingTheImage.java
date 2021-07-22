@@ -29,7 +29,7 @@ public class FlippingTheImage {
 
     private void invert(int[] row) {
         for (int i = 0; i < row.length; i++) {
-            row[i] = row[i] == 1 ? 0 : 1;
+            row[i] = row[i] ^ 1; // convert 1 to 0 and 0 to 1
         }
     }
 }
