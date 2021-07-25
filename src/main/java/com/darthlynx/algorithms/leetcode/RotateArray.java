@@ -17,7 +17,7 @@ public class RotateArray {
 
     // Time complexity: O(n)
     // Space complexity: O(2*n) == O(n)
-    public void rotate(int[] nums, int k) {
+    public void rotate2(int[] nums, int k) {
 
         if (nums.length == 1 || k == 0) {
             return;
@@ -37,5 +37,47 @@ public class RotateArray {
             nums[j] = doubled[i];
         }
 
+    }
+
+
+    // In this approach we rotate the parts of array using the next algorithm
+    // 1) rotate a part of array from `nums.length - k` to `nums.length-1`
+    // 2) rotate a part from the beginning to the `nums.length - k - 1`
+    // 3) rotate entire array
+
+    // e.g.
+    // given array {1,2,3,4,5} and k = 2
+    // first of all we rotate next part:
+    // {1,2,3,4,5}  -> {1,2,3,5,4}
+    //        ^ ^
+    // then we rotate the other part:
+    // {1,2,3,5,4}  -> {3,2,1,5,4}
+    //  ^ ^ ^
+    // and after that we rotate entire array:
+    // {4,5,1,2,3}
+
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    public void rotate(int[] nums, int k) {
+
+        k = k % nums.length;
+        int length = nums.length;
+
+        rotatePart(nums, length - k, length-1);
+        rotatePart(nums, 0, length - k - 1);
+        rotatePart(nums, 0, length-1);
+    }
+
+    private void rotatePart(int[] arr, int left, int right) {
+        while (left <= right) {
+            swap(arr, left, right);
+            left++; right--;
+        }
+    }
+
+    private void swap(int[] arr, int left, int right) {
+        int tmp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = tmp;
     }
 }
