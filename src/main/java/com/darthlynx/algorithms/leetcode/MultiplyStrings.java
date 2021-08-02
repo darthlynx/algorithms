@@ -11,8 +11,8 @@ public class MultiplyStrings {
 
         int[] res = new int[num1.length() + num2.length()];
 
-        char[] n1 = new StringBuilder(num1).reverse().toString().toCharArray();
-        char[] n2 = new StringBuilder(num2).reverse().toString().toCharArray();
+        char[] n1 = reverseNum(num1);
+        char[] n2 = reverseNum(num2);
 
         int digit, carry;
         for (int i1 = 0; i1 < n1.length; i1++) {
@@ -23,11 +23,23 @@ public class MultiplyStrings {
                 res[i1 + i2 + 1] += carry;
             }
         }
+
+        return resultToString(res);
+    }
+
+    private int toInt(char ch) {
+        return ch - '0';
+    }
+
+    private char[] reverseNum(String num) {
+        return new StringBuilder(num).reverse().toString().toCharArray();
+    }
+
+    private String resultToString(int[] res) {
         StringBuilder result = new StringBuilder();
         for (int num : res) {
             result.append(num);
         }
-
         removeLeadingZeroes(result.reverse());
 
         return result.toString();
@@ -37,10 +49,6 @@ public class MultiplyStrings {
         while (result.length() > 0 && result.charAt(0) == '0') {
             result.deleteCharAt(0);
         }
-    }
-
-    private int toInt(char ch) {
-        return ch - '0';
     }
 
 }
