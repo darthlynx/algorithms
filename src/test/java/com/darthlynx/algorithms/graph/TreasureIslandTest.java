@@ -1,0 +1,25 @@
+package com.darthlynx.algorithms.graph;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class TreasureIslandTest {
+
+    private TreasureIsland test = new TreasureIsland();
+
+    @Test
+    public void test1() {
+        String[][] grid =  {{"O", "O", "O", "O"},
+                            {"D", "O", "D", "O"},
+                            {"O", "O", "O", "O"},
+                            {"X", "D", "D", "O"}};
+
+        int expectedNumberOfMoves = 5;
+
+        int actualNumberOfMoves = test.findTreasureIsland(grid);
+
+        assertEquals(expectedNumberOfMoves, actualNumberOfMoves);
+    }
+
+}
