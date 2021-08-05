@@ -16,7 +16,7 @@ public class TreasureIsland {
     // where n - number of rows, m - number of columns
     public int findTreasureIsland(String[][] grid) {
 
-        if (grid == null || grid.length == 0) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
             return 0;
         }
 
