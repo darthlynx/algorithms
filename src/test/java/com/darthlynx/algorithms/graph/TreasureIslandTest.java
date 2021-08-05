@@ -22,4 +22,24 @@ public class TreasureIslandTest {
         assertEquals(expectedNumberOfMoves, actualNumberOfMoves);
     }
 
+    @Test
+    public void testCornerCase1() {
+        String[][] grid = {};
+
+        int expectedNumberOfMoves = 0;
+        int actualNumberOfMoves = test.findTreasureIsland(grid);
+
+        assertEquals(expectedNumberOfMoves, actualNumberOfMoves);
+    }
+
+    @Test
+    public void testCornerCase2() {
+        String[][] grid = null;
+
+        int expectedNumberOfMoves = 0;
+        int actualNumberOfMoves = test.findTreasureIsland(grid);
+
+        assertEquals(expectedNumberOfMoves, actualNumberOfMoves);
+    }
+
 }
