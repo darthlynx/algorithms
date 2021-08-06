@@ -25,11 +25,29 @@ public class TopNCompetitors {
 
         }
 
-        return occurrences.entrySet().stream()
-                .sorted(Map.Entry.<String, Integer> comparingByValue().reversed().thenComparing(Map.Entry::getKey))
-                .limit(topNCompetitors)
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+//        return occurrences.entrySet().stream()
+//                .sorted(Map.Entry.<String, Integer> comparingByValue().reversed().thenComparing(Map.Entry::getKey))
+//                .limit(topNCompetitors)
+//                .map(Map.Entry::getKey)
+//                .collect(Collectors.toList());
+
+        PriorityQueue<String> queue = new PriorityQueue<>((e1, e2) -> {
+            int res = occurrences.get(e2) - occurrences.get(e1);
+            if (res != 0) {
+                return res;
+            } else {
+                return e1.compareTo(e2);
+            }
+        });
+
+        queue.addAll(occurrences.keySet());
+
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < topNCompetitors; i++) {
+            result.add(queue.remove());
+        }
+
+        return result;
 
     }
 }
