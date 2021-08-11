@@ -3,6 +3,7 @@ package com.darthlynx.algorithms.leetcode;
 import java.util.HashSet;
 import java.util.Set;
 
+// https://leetcode.com/problems/linked-list-cycle/
 public class LinkedListCycle {
 
     // slow implementation
