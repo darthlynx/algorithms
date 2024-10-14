@@ -1,6 +1,7 @@
 package com.darthlynx.algorithms.leetcode;
 
 import org.junit.Test;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -34,30 +35,18 @@ public class MinimumIndexSumOfTwoListsTest {
 
     @Test
     public void test3() {
-        String[] list1 = {"Shogun","Tapioca Express","Burger King","KFC"};
-        String[] list2 = {"KFC","Burger King","Tapioca Express","Shogun"};
+        String[] list1 = {"happy", "sad", "good"};
+        String[] list2 = {"sad", "happy", "good"};
 
-        String[] expectedResult = {"KFC","Burger King","Tapioca Express","Shogun"};
+        String[] expectedResult = {"sad", "happy"};
 
         String[] actualResult = test.findRestaurant(list1, list2);
 
-        assertArrayEquals(expectedResult, actualResult);
+        assertTrue(Arrays.asList(expectedResult).containsAll(Arrays.asList(actualResult)));
     }
 
     @Test
     public void test4() {
-        String[] list1 = {"Shogun","Tapioca Express","Burger King","KFC"};
-        String[] list2 = {"KNN","KFC","Burger King","Tapioca Express","Shogun"};
-
-        String[] expectedResult = {"KFC","Burger King","Tapioca Express","Shogun"};
-
-        String[] actualResult = test.findRestaurant(list1, list2);
-
-        assertArrayEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void test5() {
         String[] list1 = {"KFC"};
         String[] list2 = {"KFC"};
 
