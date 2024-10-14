@@ -1,7 +1,7 @@
 package com.darthlynx.algorithms.leetcode;
 
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 
 // https://leetcode.com/problems/rotting-oranges/
 public class RottingOranges {
@@ -12,7 +12,6 @@ public class RottingOranges {
         private int[] dy = new int[]{0, 0, -1, 1};
     
         public int orangesRotting(int[][] grid) {
-            
             Queue<int[]> q = new LinkedList<>();
             
             // put all rotten fruits locations into the queue
