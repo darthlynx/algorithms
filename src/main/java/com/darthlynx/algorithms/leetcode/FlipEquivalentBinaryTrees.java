@@ -44,7 +44,7 @@ public class FlipEquivalentBinaryTrees {
             boolean flip = flipEquiv(root1.left, root2.right) &&
                            flipEquiv(root1.right, root2.left);
             
-            // if either one or another works, trees are "fleep equivalent"
+            // if either one or another works, trees are "flip equivalent"
             return noFlip || flip;
         }
     }
