@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.darthlynx.algorithms.utils.Utils;
-
 public class QuickSort {
 
 	public static List<Integer> quickSort(List<Integer> list) {
