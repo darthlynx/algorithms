@@ -1,5 +1,7 @@
 # Sieve of Eratosthenes
 
+Tags: #PrimeNumbers
+
 The [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is a classic and efficient way to find all the prime numbers up to a certain limit, like 100. Essentially, we’re going to go through a list of numbers and cross off anything that’s not prime.
 
 1. Create a List: We start with a list of numbers from 2 to 100. Notice we skip 1 since it’s not considered a prime.
