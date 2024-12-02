@@ -11,8 +11,8 @@ Eulerian paths have a couple of conditions:
 
 In an undirected graph, either all nodes have an even degree, or exactly two have an odd degree.
 In a directed graph (which is what we have here), we need to check if:
-- Each node’s outDegree matches its inDegree;
-- Or, exactly one node has one more outgoing edge (outDegree = inDegree + 1), which indicates our starting point.
+- Each node’s `outDegree` matches its `inDegree`;
+- Or, exactly one node has one more outgoing edge (`outDegree = inDegree + 1`), which indicates our starting point.
 
 ![Example](../Excalidraw/EulerianPath.excalidraw)
 
