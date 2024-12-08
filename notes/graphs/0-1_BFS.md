@@ -39,5 +39,5 @@ while d.empty() == false:
 ```
 
 ### Complexity
-But the time complexity of this code is `O(E + V)` , which is linear and more efficient than Dijkstra.
-The analysis and proof of correctness is also same as that of BFS
+The time complexity of this code is `O(E + V)` , which is linear and more efficient than Dijkstra.
+The analysis and proof of correctness is also same as that of BFS.
