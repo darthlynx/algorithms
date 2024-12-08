@@ -34,7 +34,8 @@ public class MinimumLimitOfBallsInABag {
         private boolean isPossible(int maxBallsInBag, int[] nums, int maxOperations) {
             int operations = 0;
             for (int num : nums) {
-                operations += (int) Math.ceil(num / (double) maxBallsInBag) - 1;
+                // operations += (int) Math.ceil(num / (double) maxBallsInBag) - 1;
+                operations += (num - 1) / maxBallsInBag;
                 if (operations > maxOperations) {
                     return false;
                 }
