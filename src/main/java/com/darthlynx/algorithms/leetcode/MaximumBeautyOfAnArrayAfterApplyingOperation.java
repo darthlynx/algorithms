@@ -39,4 +39,25 @@ public class MaximumBeautyOfAnArrayAfterApplyingOperation {
             return nums[j] - nums[i] <= 2 * k;
         }
     }
+
+    // Time complexity: O(N * logN)
+    // Space complexity: O(logN)
+    class Solution2 {
+        public int maximumBeauty(int[] nums, int k) {
+            Arrays.sort(nums);
+    
+            int right = 0;
+            int length = 0;
+    
+            for (int left = 0; left < nums.length; left++) {
+                while (right < nums.length && nums[right] - nums[left] <= 2 * k) {
+                    right++;
+                }
+                // we do not add +1 here because right pointer already looking at position after the subset
+                length = Math.max(length, right - left);
+            }
+    
+            return length;
+        }
+    }
 }
