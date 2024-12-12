@@ -9,15 +9,14 @@ public class TakeGiftsFromTheRichestPile {
     // Space complexity: O(N)
     class Solution {
         public long pickGifts(int[] gifts, int k) {
-            PriorityQueue<Long> maxHeap = new PriorityQueue<>((a, b) -> Long.compare(b, a));
-
+            PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
             for (int gift : gifts) {
-                maxHeap.offer((long) gift);
+                maxHeap.offer(gift);
             }
 
             for (int i = 0; i < k; i++) {
-                long giftPile = maxHeap.poll();
-                long updated = sqrt(giftPile);
+                int giftPile = maxHeap.poll();
+                int updated = sqrt(giftPile);
                 maxHeap.offer(updated);
             }
 
@@ -29,14 +28,14 @@ public class TakeGiftsFromTheRichestPile {
             return totalLeft;
         }
 
-        public long sqrt(long x) {
-            long good = 1L;
-            long bad = x;
+        public int sqrt(int x) {
+            int good = 1;
+            int bad = x;
 
             while (bad - good > 1) {
-                long mid = good + (bad - good) / 2;
+                int mid = good + (bad - good) / 2;
 
-                if (mid * mid <= x) {
+                if ((long) mid * mid <= (long) x) {
                     good = mid;
                 } else {
                     bad = mid;
