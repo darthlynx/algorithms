@@ -2,6 +2,7 @@ package com.darthlynx.algorithms.leetcode;
 
 import java.util.PriorityQueue;
 
+// https://leetcode.com/problems/maximum-average-pass-ratio/
 public class MaximumAveragePassRatio {
 
     // Time complexity: O(N * logN)
@@ -32,7 +33,7 @@ public class MaximumAveragePassRatio {
             return passRatio / classes.length;
         }
 
-        // we need to maximize potential ratio, so need to check 
+        // we need to maximize potential ratio, so need to check
         // which ratio will have biggest grows after adding one more student
         private double getRatio(int pass, int total) {
             return (double) (pass + 1) / (total + 1) - (double) pass / total;
@@ -79,7 +80,7 @@ public class MaximumAveragePassRatio {
             return passRatio / classes.length;
         }
 
-        // we need to maximize potential ratio, so need to check 
+        // we need to maximize potential ratio, so need to check
         // which ratio will have biggest grows after adding one more student
         private double getRatioImprovement(int pass, int total) {
             return (double) (pass + 1) / (total + 1) - (double) pass / total;
