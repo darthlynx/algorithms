@@ -4,7 +4,7 @@
 Implementation example:
 
 ```java
-class Trie {
+public class Trie {
     class Node {
         private Node[] links = new Node[26];
 
@@ -23,7 +23,7 @@ class Trie {
 
     private Node root;
 
-    Trie() {
+    public Trie() {
         root = new Node();
     }
 
