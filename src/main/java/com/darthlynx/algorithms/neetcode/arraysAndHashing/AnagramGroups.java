@@ -9,6 +9,9 @@ import java.util.Map;
 // https://neetcode.io/problems/anagram-groups
 public class AnagramGroups {
 
+    // Time complexity: O(m * n)
+    // Space complexity: O(m * n)
+    // where n - average size of the string
     class Solution {
         public List<List<String>> groupAnagrams(String[] strs) {
             List<List<String>> result = new ArrayList<>();
