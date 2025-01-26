@@ -2,6 +2,8 @@ package com.darthlynx.algorithms.bytopic.graph;
 
 import org.junit.Test;
 
+import com.darthlynx.algorithms.bytopic.graph.TreasureIsland;
+
 import static org.junit.Assert.*;
 
 public class TreasureIslandTest {

@@ -1,6 +1,9 @@
 package com.darthlynx.algorithms.bytopic.loops;
 
 import org.junit.Test;
+
+import com.darthlynx.algorithms.bytopic.loops.MergeTwoLists;
+
 import java.util.List;
 
 import static org.junit.Assert.*;

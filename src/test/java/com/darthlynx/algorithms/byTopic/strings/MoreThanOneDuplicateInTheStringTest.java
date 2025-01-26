@@ -2,6 +2,8 @@ package com.darthlynx.algorithms.bytopic.strings;
 
 import org.junit.Test;
 
+import com.darthlynx.algorithms.bytopic.strings.MoreThanOneDuplicateInTheString;
+
 import static org.junit.Assert.*;
 
 public class MoreThanOneDuplicateInTheStringTest {

@@ -1,7 +1,10 @@
 package com.darthlynx.algorithms.bytopic.graph;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import com.darthlynx.algorithms.bytopic.graph.DeliverService;
 
 public class DeliverServiceTest {
 

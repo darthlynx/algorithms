@@ -2,6 +2,7 @@ package com.darthlynx.algorithms.bytopic.loops;
 
 import org.junit.Test;
 
+import com.darthlynx.algorithms.bytopic.loops.TopNCompetitors;
 
 import java.util.List;
 

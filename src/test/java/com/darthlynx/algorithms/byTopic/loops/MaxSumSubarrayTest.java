@@ -1,9 +1,10 @@
 package com.darthlynx.algorithms.bytopic.loops;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
-
-import static org.junit.Assert.*;
+import com.darthlynx.algorithms.bytopic.loops.MaxSumSubarray;
 
 public class MaxSumSubarrayTest {
 
