@@ -1,1 +1,1 @@
-This repository contains different algorithms implementations and Daily Leetcode solutions
+This repository contains various algorithm implementations and solutions to Daily Leetcode problems
