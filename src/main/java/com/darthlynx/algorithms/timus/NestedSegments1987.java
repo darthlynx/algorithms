@@ -9,7 +9,7 @@ import java.util.Stack;
 
 public class NestedSegments1987 {
 
-    // https://timus.online/problem.aspx?space=1&num=1987&locale=ru
+    // https://timus.online/problem.aspx?space=1&num=1987
     public static void main(String[] args) {
 
         List<String> inputs = getInputData();

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-// https://timus.online/problem.aspx?space=1&num=2062&locale=ru
+// https://timus.online/problem.aspx?space=1&num=2062
 public class AmbitiousExperiment {
     private static final String INPUT_FILE = "2062_input.txt";
 

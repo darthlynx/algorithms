@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-// https://codeforces.com/problemset/problem/1322/A?locale=ru
+// https://codeforces.com/problemset/problem/1322/A
 public class InterestingCompetition {
 
     public static char OPEN = '(';

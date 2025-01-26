@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-// https://acm.timus.ru/problem.aspx?space=1&num=2151&locale=ru
+// https://acm.timus.ru/problem.aspx?space=1&num=2151
 public class Mahjong {
 
     private static final String TSUMO = "Tsumo";

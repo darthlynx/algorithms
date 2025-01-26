@@ -2,7 +2,7 @@ package com.darthlynx.algorithms.codeforces.contest1512;
 
 import java.util.Scanner;
 
-// https://codeforces.com/contest/1512/problem/A?locale=ru
+// https://codeforces.com/contest/1512/problem/A
 public class A_SpyDetected {
 
     public static void main(String[] args) {

@@ -6,7 +6,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
 
-// https://acm.timus.ru/problem.aspx?space=1&num=2152&locale=ru
+// https://acm.timus.ru/problem.aspx?space=1&num=2152
 public class TaxFees {
     private long mxw;
     private long mxp;

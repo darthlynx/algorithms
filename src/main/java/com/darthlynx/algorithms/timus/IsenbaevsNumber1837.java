@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-// https://timus.online/problem.aspx?space=1&num=1837&locale=ru
+// https://timus.online/problem.aspx?space=1&num=1837
 public class IsenbaevsNumber1837 {
 
     private static final String INPUT_FILE = "1837_input.txt";

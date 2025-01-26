@@ -4,7 +4,7 @@ package com.darthlynx.algorithms.codeforces.contest1512;
 import java.io.*;
 import java.util.StringTokenizer;
 
-// https://codeforces.com/contest/1512/problem/B?locale=ru
+// https://codeforces.com/contest/1512/problem/B
 public class B_AlmostRectangle {
 
     private BufferedReader reader;

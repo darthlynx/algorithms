@@ -4,7 +4,7 @@ package com.darthlynx.algorithms.timus;
 import java.io.*;
 import java.util.StringTokenizer;
 
-// https://acm.timus.ru/problem.aspx?space=1&num=1184&locale=ru
+// https://acm.timus.ru/problem.aspx?space=1&num=1184
 public class CableMaster {
 
     private BufferedReader reader;

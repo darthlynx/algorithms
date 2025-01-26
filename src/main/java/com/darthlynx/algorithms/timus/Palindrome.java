@@ -2,7 +2,7 @@ package com.darthlynx.algorithms.timus;
 
 import java.util.Scanner;
 
-// https://acm.timus.ru/problem.aspx?space=1&num=1297&locale=ru
+// https://acm.timus.ru/problem.aspx?space=1&num=1297
 public class Palindrome {
 
     private static final int base = 53;
