@@ -3,7 +3,7 @@ package com.darthlynx.algorithms.leetcode;
 // https://leetcode.com/problems/koko-eating-bananas/
 public class KokoEatingBananas {
 
-    // Time complexity: O(N*logk)
+    // Time complexity: O(N*logk), where k - max value in the array, n - size of array
     // Space complexity: O(1)
     class Solution {
         public int minEatingSpeed(int[] piles, int h) {
