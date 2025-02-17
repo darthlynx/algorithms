@@ -30,7 +30,7 @@ public class KokoEatingBananas {
         private boolean canEat(int k, int[] piles, int h) {
             long resHours = 0;
             for (int pile : piles) {
-                resHours += (pile + k - 1) / k;
+                resHours += (pile + k - 1) / k; // ceil(pile / k)
             }
             return resHours <= h;
         }
