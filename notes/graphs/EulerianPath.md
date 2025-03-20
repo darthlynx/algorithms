@@ -1,6 +1,6 @@
 # Eulerian Path
 
-Tags: #Graph
+Tags: #graph
 
 [Eulerian Path](https://en.wikipedia.org/wiki/Eulerian_path) is a path in a graph that visits every edge exactly once. Eulerian Circuit is an Eulerian Path that starts and ends on the same vertex. 
 

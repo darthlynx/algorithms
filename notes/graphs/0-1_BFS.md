@@ -1,6 +1,6 @@
 # 0-1 Breads First Search
 
-Tags: #Graph #BFS
+Tags: #graph #BFS
 
 Ref: [https://codeforces.com/blog/entry/22276](https://codeforces.com/blog/entry/22276)
 

@@ -1,4 +1,6 @@
-#Graph 
+# Diameter of the Tree
+
+#graph #DFS #BFS
 
 ## Main approach:
 Run BFS/DFS on any node `s` in the graph, remembering the node `u` discovered last.
@@ -7,7 +9,6 @@ Run BFS/DFS from `u` remembering the node `v` discovered last.
 
 Example (DFS):
 ```java
-
 class Solution {
     private int maxDistance = -1;
     private int farthestNode = -1;
