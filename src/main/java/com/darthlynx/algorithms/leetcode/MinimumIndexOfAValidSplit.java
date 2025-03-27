@@ -9,7 +9,7 @@ public class MinimumIndexOfAValidSplit {
 
     // Time complexity: O(N)
     // Space complexity: O(N)
-    class Solution {
+    class Solution1 {
         public int minimumIndex(List<Integer> nums) {
             // get the frequencies of the numbers
             Map<Integer, Integer> freq = new HashMap<>();
@@ -49,6 +49,59 @@ public class MinimumIndexOfAValidSplit {
             }
 
             return res;
+        }
+    }
+
+    // Time complexity: O(N)
+    // Space complexity: O(1)
+    class Solution2 {
+        public int minimumIndex(List<Integer> nums) {
+            int dominant = getDominant(nums);
+            int dTotal = 0;
+            for (int num : nums) {
+                if (num == dominant) {
+                    dTotal++;
+                }
+            }
+    
+            int dFreq = 0;
+            int other = 0;
+            int res = -1;
+            for (int i = 0; i < nums.size(); i++) {
+                if (nums.get(i) == dominant) {
+                    dFreq++;
+                } else {
+                    other++;
+                }
+                if (dFreq > other) {
+                    res = i;
+                    break;
+                }
+            }
+    
+            if ((nums.size() - (res + 1)) / 2 >= dTotal - dFreq) {
+                return -1;
+            }
+    
+            return res;
+        }
+    
+        private int getDominant(List<Integer> nums) {
+            int dominant = 0;
+            int count = 0;
+    
+            for (int num : nums) {
+                if (count == 0) {
+                    dominant = num;
+                }
+    
+                if (num == dominant) {
+                    count++;
+                } else {
+                    count--;
+                }
+            }
+            return dominant;
         }
     }
 }
