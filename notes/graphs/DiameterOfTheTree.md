@@ -7,7 +7,7 @@ Run BFS/DFS on any node `s` in the graph, remembering the node `u` discovered la
 Run BFS/DFS from `u` remembering the node `v` discovered last.
 `d(u,v)` is the diameter of the tree
 
-Example (DFS):
+### Example (DFS):
 ```java
 class Solution {
     private int maxDistance = -1;
