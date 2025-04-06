@@ -2,14 +2,14 @@
 
 #backtracking #recursion
 
-Backtracking is a general algorithmic technique for solving problems recursively 
-by trying to build a solution incrementally and removing those solutions 
+Backtracking is a general algorithmic technique for solving problems recursively
+by trying to build a solution incrementally and removing those solutions
 that fail to satisfy the problem constraints at any point (i.e., *backtrack*).
 
 ## Key concepts
 - **Recursive approach**: tries all possible options in a search space
 - **Backtracking step**: when a partial solution violates constraints, undo the last decision
-- **Pruning**: helms to eliminate branches early and optimize performance 
+- **Pruning**: helms to eliminate branches early and optimize performance
 
 ## General algorithm
 ```pseudo
@@ -35,7 +35,7 @@ Combinatorial problems:
 ## Example (subset generation)
 ```java
 class Solution {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         List<List<Integer>> subsets = new ArrayList<>();
         generateSubsets(0, nums, new ArrayList<>(), subsets);
 
@@ -43,14 +43,14 @@ class Solution {
         for (List<Integer> subset : subsets) {
             System.out.println(subset);
         }
-	}
-	
-	private void generateSubsets(int idx, int[] nums, List<Integer> subset, List<List<Integer>> subsets) {	
-		if (idx >= nums.length) {
+    }
+
+    private void generateSubsets(int idx, int[] nums, List<Integer> subset, List<List<Integer>> subsets) {
+        if (idx >= nums.length) {
             // make a copy of current subset and add to solution
-		    subsets.add(new ArrayList<>(subset));
-	        return;
-	    }
+            subsets.add(new ArrayList<>(subset));
+            return;
+        }
 
         // include element
         subset.add(nums[idx]);
