@@ -42,4 +42,39 @@ public class CountLargestGroup {
             return sum;
         }
     }
+
+    // Time complexity: O(n*logn)
+    // Space complexity: O(n)
+    class Solution2 {
+        public int countLargestGroup(int n) {
+            // <group, count>
+            Map<Integer, Integer> groups = new HashMap<>();
+
+            for (int i = 1; i <= n; i++) {
+                int sum = digitSum(i);
+                groups.put(sum, groups.getOrDefault(sum, 0) + 1);
+            }
+
+            int biggest = 0;
+            int count = 1;
+            for (int groupSize : groups.values()) {
+                if (groupSize > biggest) {
+                    biggest = groupSize;
+                    count = 1;
+                } else if (groupSize == biggest) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private int digitSum(int num) {
+            int sum = 0;
+            while (num > 0) {
+                sum += num % 10;
+                num = num / 10;
+            }
+            return sum;
+        }
+    }
 }
