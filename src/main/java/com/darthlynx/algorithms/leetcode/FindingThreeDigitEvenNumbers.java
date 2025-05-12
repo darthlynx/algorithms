@@ -1,9 +1,7 @@
 package com.darthlynx.algorithms.leetcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 // https://leetcode.com/problems/finding-3-digit-even-numbers/
 public class FindingThreeDigitEvenNumbers {
@@ -12,9 +10,9 @@ public class FindingThreeDigitEvenNumbers {
     // Space complexity: O(1)
     class Solution {
         public int[] findEvenNumbers(int[] digits) {
-            Map<Integer, Integer> freq = new HashMap<>();
+            int[] freq = new int[10];
             for (int digit : digits) {
-                freq.put(digit, freq.getOrDefault(digit, 0) + 1);
+                freq[digit]++;
             }
 
             List<Integer> result = new ArrayList<>();
@@ -31,7 +29,7 @@ public class FindingThreeDigitEvenNumbers {
             return res;
         }
 
-        private boolean canConstruct(int num, Map<Integer, Integer> freq) {
+        private boolean canConstruct(int num, int[] freq) {
             int[] count = new int[10];
 
             int temp = num;
@@ -42,7 +40,7 @@ public class FindingThreeDigitEvenNumbers {
             }
 
             for (int i = 0; i < count.length; i++) {
-                if (count[i] > freq.getOrDefault(i, 0)) {
+                if (count[i] > freq[i]) {
                     return false;
                 }
             }
