@@ -1,7 +1,5 @@
 package com.darthlynx.algorithms.leetcode;
 
-import java.util.Arrays;
-
 // https://leetcode.com/problems/type-of-triangle/
 public class TypeOfTriangle {
 
