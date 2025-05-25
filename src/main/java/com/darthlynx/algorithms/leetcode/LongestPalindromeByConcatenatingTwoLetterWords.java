@@ -18,6 +18,48 @@ public class LongestPalindromeByConcatenatingTwoLetterWords {
 
             int maxPalindrome = 0;
             boolean allowed = true;
+            for (String word : freq.keySet()) {
+                String palindrome = getPalindrome(word);
+                if (word.equals(palindrome) && freq.containsKey(word)) {
+                    int count = freq.get(word);
+                    // allow pairs
+                    maxPalindrome += (count / 2) * 4;
+                    // also allow only one single palindromic word
+                    if (count % 2 == 1 && allowed) {
+                        allowed = false;
+                        maxPalindrome += 2;
+                    }
+                    freq.put(word, 0); // mark as used
+                } else if (freq.containsKey(word) && freq.containsKey(palindrome)) {
+                    int pairs = Math.min(freq.get(word), freq.get(palindrome));
+                    maxPalindrome += 4 * pairs;
+
+                    // mark both as used
+                    freq.put(word, 0);
+                    freq.put(palindrome, 0);
+                }
+            }
+
+            return maxPalindrome;
+        }
+
+        private String getPalindrome(String w) {
+            return "" + w.charAt(1) + w.charAt(0);
+        }
+    }
+
+    // Time complexity: O(n)
+    // Space complexity: O(n)
+    class Solution2 {
+        public int longestPalindrome(String[] words) {
+            Map<String, Integer> freq = new HashMap<>();
+
+            for (String word : words) {
+                freq.put(word, freq.getOrDefault(word, 0) + 1);
+            }
+
+            int maxPalindrome = 0;
+            boolean allowed = true;
             for (String word : words) {
                 if (isPalindrome(word) && freq.containsKey(word)) {
                     int count = freq.get(word);
