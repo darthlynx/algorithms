@@ -35,7 +35,7 @@ class DisjointSet {
 
         for (int i = 0; i < size; i++) {
             parent[i] = i; // initially, each node is its own parent
-            rank[0] = 0;
+            rank[i] = 0;
         }
     }
 
@@ -58,6 +58,40 @@ class DisjointSet {
                 parent[rootV] = rootU;
                 rank[rootU]++;
             }
+        }
+    }
+}
+```
+
+## Example 2
+Combine characters in lexicographical order (lexicographically smaller character should be a parent)
+
+```java
+class DisjointSet {
+    private Map<Character, Character> parent;
+
+    DisjointSet() {
+        parent = new HashMap<>();
+    }
+
+    public char find(char ch) {
+        parent.putIfAbsent(ch, ch);
+        if (parent.get(ch) != ch) {
+            parent.put(ch, find(parent.get(ch)));
+        }
+        return parent.get(ch);
+    }
+
+    public void union(char a, char b) {
+        char parentA = find(a);
+        char parentB = find(b);
+        if (parentA == parentB) {
+            return;
+        }
+        if (parentA < parentB) {
+            parent.put(parentB, parentA); // smaller is a parent
+        } else {
+            parent.put(parentA, parentB);
         }
     }
 }
@@ -96,18 +130,28 @@ class DisjointSet {
     DisjointSet(int n) {
         parent = new int[n];
         rank = new int[n];
-        for (int i = 0; i < n; i++) parent[i] = i;
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
     }
     int find(int v) {
-        if (parent[v] != v) parent[v] = find(parent[v]);
+        if (parent[v] != v) {
+            parent[v] = find(parent[v]);
+        }
         return parent[v];
     }
     void union(int u, int v) {
-        int rootU = find(u), rootV = find(v);
+        int rootU = find(u);
+        int rootV = find(v);
         if (rootU != rootV) {
-            if (rank[rootU] > rank[rootV]) parent[rootV] = rootU;
-            else if (rank[rootU] < rank[rootV]) parent[rootU] = rootV;
-            else { parent[rootV] = rootU; rank[rootU]++; }
+            if (rank[rootU] > rank[rootV]) {
+                parent[rootV] = rootU;
+            } else if (rank[rootU] < rank[rootV]) {
+                parent[rootU] = rootV;
+            } else {
+                parent[rootV] = rootU;
+                rank[rootU]++;
+            }
         }
     }
 }
@@ -121,18 +165,18 @@ public class KruskalsAlgorithm {
         edges.add(new Edge(0, 3, 5));
         edges.add(new Edge(1, 3, 15));
         edges.add(new Edge(2, 3, 4));
-        
+
         Collections.sort(edges);
         DisjointSet ds = new DisjointSet(V);
         List<Edge> mst = new ArrayList<>();
-        
+
         for (Edge edge : edges) {
             if (ds.find(edge.src) != ds.find(edge.dest)) {
                 mst.add(edge);
                 ds.union(edge.src, edge.dest);
             }
         }
-        
+
         System.out.println("Edges in Minimum Spanning Tree:");
         for (Edge e : mst) {
             System.out.println(e.src + " - " + e.dest + " : " + e.weight);
