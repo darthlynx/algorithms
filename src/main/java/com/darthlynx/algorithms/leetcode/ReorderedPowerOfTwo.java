@@ -1,9 +1,7 @@
 package com.darthlynx.algorithms.leetcode;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 // https://leetcode.com/problems/reordered-power-of-2/
