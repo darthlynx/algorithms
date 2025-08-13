@@ -8,13 +8,10 @@ public class PowerOfThree {
     class Solution {
         public boolean isPowerOfThree(int n) {
             long res = 1;
-            while (res <= n) {
-                if (res == n) {
-                    return true;
-                }
+            while (res < n) {
                 res *= 3;
             }
-            return false;
+            return res == n;
         }
     }
 }
