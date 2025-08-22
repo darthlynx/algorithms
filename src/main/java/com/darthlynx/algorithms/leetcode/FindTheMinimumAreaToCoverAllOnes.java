@@ -9,10 +9,8 @@ public class FindTheMinimumAreaToCoverAllOnes {
         public int minimumArea(int[][] grid) {
             int m = grid.length;
             int n = grid[0].length;
-            int minX = n;
-            int minY = m;
-            int maxX = 0;
-            int maxY = 0;
+            int minX = n, maxX = 0;
+            int minY = m, maxY = 0;
 
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
