@@ -13,11 +13,8 @@ public class MaximumAreaOfLongestDiagonalRectangle {
             for (int[] dim : dimensions) {
                 double diagonal = Math.sqrt(dim[0] * dim[0] + dim[1] * dim[1]);
 
-                if (diagonal > max) {
+                if (diagonal > max || diagonal == max && dim[0] * dim[1] > area) {
                     area = dim[0] * dim[1];
-                    max = diagonal;
-                } else if (diagonal == max) {
-                    area = Math.max(area, dim[0] * dim[1]);
                     max = diagonal;
                 }
             }
