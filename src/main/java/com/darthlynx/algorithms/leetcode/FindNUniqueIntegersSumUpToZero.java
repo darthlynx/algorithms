@@ -8,9 +8,6 @@ public class FindNUniqueIntegersSumUpToZero {
     class Solution {
         public int[] sumZero(int n) {
             int[] res = new int[n];
-            if (n % 2 != 0) {
-                res[n / 2] = 0;
-            }
             int startValue = n / 2;
             int left = 0, right = n - 1;
             while (left < right) {
