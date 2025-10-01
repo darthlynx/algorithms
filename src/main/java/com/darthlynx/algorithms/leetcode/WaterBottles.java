@@ -7,14 +7,14 @@ public class WaterBottles {
     // Space complexity: O(1)
     class Solution {
         public int numWaterBottles(int numBottles, int numExchange) {
-            int num = numBottles;
+            int result = numBottles;
             while (numBottles >= numExchange) {
                 int changed = numBottles / numExchange;
-                num += changed;
+                result += changed;
                 int left = numBottles % numExchange;
                 numBottles = changed + left;
             }
-            return num;
+            return result;
         }
     }
 }
