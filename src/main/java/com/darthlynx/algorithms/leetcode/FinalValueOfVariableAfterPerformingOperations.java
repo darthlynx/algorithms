@@ -22,4 +22,22 @@ public class FinalValueOfVariableAfterPerformingOperations {
             return x;
         }
     }
+
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    class Solution2 {
+        public int finalValueAfterOperations(String[] operations) {
+            int x = 0;
+            // X++ or ++X will have '+' at index 1
+            // X-- or --X will have '-' at index 1
+            for (String op : operations) {
+                if (op.charAt(1) == '+') {
+                    x++;
+                } else {
+                    x--;
+                }
+            }
+            return x;
+        }
+    }
 }
