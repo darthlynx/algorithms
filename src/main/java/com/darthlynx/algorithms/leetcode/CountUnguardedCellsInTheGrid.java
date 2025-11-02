@@ -157,4 +157,75 @@ public class CountUnguardedCellsInTheGrid {
         }
     }
 
+    // Time complexity: O(m*n + g*(m+n)), where g - number of guards
+    // Space complexity: O(m*n)
+    class Solution3 {
+
+        public static final int WALL = 1;
+        public static final int GUARD = 2;
+        public static final int GUARDED = 3;
+        public static final int NOT_GUARDED = 0;
+
+        private static final int[] dx = { -1, 1, 0, 0 };
+        private static final int[] dy = { 0, 0, -1, 1 };
+
+        public int countUnguarded(int m, int n, int[][] guards, int[][] walls) {
+
+            int[][] grid = new int[m][n];
+
+            // insert walls
+            for (int[] wall : walls) {
+                grid[wall[0]][wall[1]] = WALL;
+            }
+
+            // mark guards
+            for (int[] guard : guards) {
+                int gRow = guard[0];
+                int gCol = guard[1];
+                grid[gRow][gCol] = GUARD;
+            }
+
+            // mark the cells visible by guards
+            for (int[] guard : guards) {
+                int gRow = guard[0];
+                int gCol = guard[1];
+                markGuardedCells(grid, gRow, gCol);
+            }
+
+            int notGuarded = 0;
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (grid[i][j] == NOT_GUARDED) {
+                        notGuarded++;
+                    }
+                }
+            }
+
+            return notGuarded;
+        }
+
+        private void markGuardedCells(int[][] grid, int x, int y) {
+            for (int direction = 0; direction < 4; direction++) {
+                int newX = x + dx[direction];
+                int newY = y + dy[direction];
+
+                while (isValidBoarder(grid, newX, newY)) {
+                    if (isNotValid(grid, newX, newY)) {
+                        break;
+                    }
+                    grid[newX][newY] = GUARDED;
+                    newX += dx[direction];
+                    newY += dy[direction];
+                }
+            }
+        }
+
+        private boolean isValidBoarder(int[][] grid, int x, int y) {
+            return x >= 0 && x < grid.length && y >= 0 && y < grid[0].length;
+        }
+
+        private boolean isNotValid(int[][] grid, int x, int y) {
+            return grid[x][y] == WALL || grid[x][y] == GUARD;
+        }
+    }
 }
