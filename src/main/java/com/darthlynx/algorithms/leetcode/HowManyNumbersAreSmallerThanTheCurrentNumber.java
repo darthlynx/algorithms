@@ -39,4 +39,31 @@ public class HowManyNumbersAreSmallerThanTheCurrentNumber {
             return res;
         }
     }
+
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    class Solution2 {
+        public int[] smallerNumbersThanCurrent(int[] nums) {
+            int n = nums.length;
+
+            // nums in range [0,100]
+            int[] count = new int[101];
+
+            for (int num : nums) {
+                count[num]++;
+            }
+
+            // use count array as a prefix sum
+            for (int i = 1; i < 101; i++) {
+                count[i] = count[i] + count[i - 1];
+            }
+
+            int[] res = new int[n];
+            for (int i = 0; i < n; i++) {
+                res[i] = nums[i] == 0 ? 0 : count[nums[i] - 1];
+            }
+
+            return res;
+        }
+    }
 }
