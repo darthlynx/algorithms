@@ -25,34 +25,34 @@ public class MagicSquaresInGrid {
             if (grid[i + 1][j + 1] != 5) {
                 return false;
             }
-            if (grid[i][j] % 2 != 0
-                    || grid[i + 2][j] % 2 != 0
-                    || grid[i][j + 2] % 2 != 0
-                    || grid[i + 2][j + 2] % 2 != 0) {
-                return false;
+
+            // check if all digits unique
+            int[] digits = new int[10];
+            for (int r = i; r < i + 3; r++) {
+                for (int c = j; c < j + 3; c++) {
+                    if (grid[r][c] > 9 || digits[grid[r][c]] != 0) {
+                        return false;
+                    }
+                    digits[grid[r][c]]++;
+                }
             }
 
-            boolean isSameCol = grid[i][j] + grid[i + 1][j] + grid[i + 2][j] == 15
-                    && grid[i][j + 1] + grid[i + 1][j + 1] + grid[i + 2][j + 1] == 15
-                    && grid[i][j + 2] + grid[i + 1][j + 2] + grid[i + 2][j + 2] == 15;
-            if (!isSameCol) {
-                return false;
+            // check columns
+            for (int k = 0; k < 3; k++) {
+                if (grid[i][j + k] + grid[i + 1][j + k] + grid[i + 2][j + k] != 15) {
+                    return false;
+                }
             }
 
-            boolean isSameRow = grid[i][j] + grid[i][j + 1] + grid[i][j + 2] == 15
-                    && grid[i + 1][j] + grid[i + 1][j + 1] + grid[i + 1][j + 2] == 15
-                    && grid[i + 2][j] + grid[i + 2][j + 1] + grid[i + 2][j + 2] == 15;
-            if (!isSameRow) {
-                return false;
+            // check rows
+            for (int k = 0; k < 3; k++) {
+                if (grid[i + k][j] + grid[i + k][j + 1] + grid[i + k][j + 2] != 15) {
+                    return false;
+                }
             }
 
-            boolean isSameDiagonal = grid[i][j] + grid[i + 1][j + 1] + grid[i + 2][j + 2] == 15
+            return grid[i][j] + grid[i + 1][j + 1] + grid[i + 2][j + 2] == 15
                     && grid[i + 2][j] + grid[i + 1][j + 1] + grid[i][j + 2] == 15;
-            if (!isSameDiagonal) {
-                return false;
-            }
-
-            return true;
         }
     }
 }
