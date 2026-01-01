@@ -42,29 +42,20 @@ public class PlusOne {
     class Solution2 {
         public int[] plusOne(int[] digits) {
             int n = digits.length;
-            int rem = 1;
 
             for (int i = n - 1; i >= 0; i--) {
-                if (digits[i] + rem > 9) {
-                    digits[i] = 0;
-                    rem = 1;
-                } else {
-                    digits[i] = digits[i] + rem;
-                    rem = 0;
-                    break;
+                if (digits[i] + 1 <= 9) {
+                    digits[i]++;
+                    return digits;
                 }
+                digits[i] = 0;
             }
 
-            if (rem == 1) {
-                int[] res = new int[n + 1];
-                res[0] = rem;
-                for (int i = 0; i < n; i++) {
-                    res[i + 1] = digits[i];
-                }
-                return res;
-            } else {
-                return digits;
-            }
+            // if not exited by this point, we need to create new array
+            // (e.g. corner case: 99 + 1 = 100)
+            int[] res = new int[n + 1];
+            res[0] = 1;
+            return res;
         }
     }
 }
