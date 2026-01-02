@@ -44,6 +44,7 @@ public class NRepeatedElementInSize2NArray {
         }
     }
 
+    // this solution is not correct. It passes all leetcode tests but can fail for some edge cases
     // Time complexity: O(n)
     // Space complexity: O(1)
     class Solution3 {
