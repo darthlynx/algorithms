@@ -34,4 +34,24 @@ public class LengthOfLastWord {
             return firstNonSpace + 1;
         }
     }
+
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    class Solution3 {
+        public int lengthOfLastWord(String s) {
+            int i = s.length() - 1;
+
+            // skip trailing spaces
+            while (i >= 0 && s.charAt(i) == ' ') {
+                i--;
+            }
+
+            int size = 0;
+            while (i >= 0 && s.charAt(i) != ' ') {
+                size++;
+                i--;
+            }
+            return size;
+        }
+    }
 }
